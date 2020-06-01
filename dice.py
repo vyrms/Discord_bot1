@@ -6,6 +6,7 @@ def dice(n=1):
     if n == 1:
         return random.randint(1, 6)
 
+    # for multiple dice rolls
     results = ""
     counts = [0, 0, 0, 0, 0, 0]
     for i in range(n):

@@ -6,13 +6,14 @@ from dotenv import load_dotenv
 import mysql.connector
 from mysql.connector import errorcode
 
+# import my own functions from other .py files
 from cointoss import cointoss
 from senryu import *
 from dice import dice
 from sql_connect import *
 
 
-## make a .env file with the tokens and IDs needed
+# make a .env file with the tokens and IDs needed
 
 # botのトークン
 load_dotenv()
