@@ -17,6 +17,13 @@ def help_message():
                   "\n" \
                   ".neko でネコのマネをするよ！\n" \
                   "\n" \
+                  ".wikisearch でWikipedia内を検索して一番近いものを選んであげるよ！\n" \
+                  "例： .wikisearch 田中\n" \
+                  "\n" \
+                  ".wikisuggest でWikipedia内を検索してそれっぽいものを何個か選んであげるよ！\n" \
+                  "例： .wikisuggest 10 田中\n" \
+                  "この場合は田中関連のものを10個選ぶよ！\n" \
+                  "\n" \
                   ".teach で言葉を覚えるよ！\n" \
                   "言葉に対して何個かの返事を覚えられるよ！\n" \
                   "返事を分けるときは「;」を使ってね！\n" \

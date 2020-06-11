@@ -8,6 +8,7 @@ from functions.sql_connect import DBcon
 from functions.help import help_message
 from functions.learn_speak import learn, speak, forget, see_vocab
 from functions.uranai import unsei
+from functions.APIs.wiki import wiki_suggest, wiki_search
 
 
 # make a .env file with the tokens and IDs needed
@@ -76,6 +77,16 @@ async def on_message(message):
     # 「.neko」と発言したら「にゃーん」が返る処理
     elif message.content == '.neko':
         await message.channel.send('にゃーん')
+        return
+
+    # make suggestions about what they want to search
+    elif message.content.startswith(".wikisuggest"):
+        await message.channel.send(wiki_suggest(message.content))
+        return
+
+    # search wikipedia for top hit
+    elif message.content.startswith(".wikisearch"):
+        await message.channel.send(wiki_search(message.content))
         return
 
     # if they want to teach
