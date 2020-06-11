@@ -10,7 +10,9 @@ from mysql.connector import errorcode
 from cointoss import cointoss
 from senryu import *
 from dice import dice
-from sql_connect import *
+from sql_connect import DBcon
+from help import help_message
+from learn_speak import learn, speak, forget
 
 
 # make a .env file with the tokens and IDs needed
@@ -44,6 +46,10 @@ async def on_message(message):
     if message.author.bot:
         return
 
+    # if they want help
+    elif message.content.startswith(".help"):
+        await message.channel.send(help_message())
+
     # if they want cointoss
     elif message.content.startswith(".coin"):
         n = message.content.replace(".coin", "").strip(" ")
@@ -72,17 +78,32 @@ async def on_message(message):
                 await message.channel.send(errormsg)
         return
 
-    # 「/neko」と発言したら「にゃーん」が返る処理
-    elif message.content == '/neko':
+    # 「.neko」と発言したら「にゃーん」が返る処理
+    elif message.content == '.neko':
         await message.channel.send('にゃーん')
         return
+
+    # if they want to teach
+    elif message.content.startswith(".teach"):
+        await message.channel.send(learn(message.content, message.guild.id))
+        return
+
+    # if they want bot to forget a word
+    elif message.content.startswith(".forget"):
+        await message.channel.send(forget(message.content, message.guild.id))
+        return
+
+    # respond to certain words that are taught
+    result = speak(message.content, message.guild.id)
+    if result is not None:
+        await message.channel.send(result)
 
     # test if it's a senryu
     result = senryu_detect(message.content, message.author, message.guild.id)
     if result is not None:
         await message.channel.send(result)
 
-    # reads a senryu
+    # read a senryu
     triggers = ["詠め", "ハイク", "俳句", "川柳"]
     for trigger in triggers:
         if trigger in message.content:

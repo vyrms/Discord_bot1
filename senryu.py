@@ -7,7 +7,7 @@ from collections import Counter
 import mysql.connector
 from mysql.connector import errorcode
 
-from sql_connect import *
+from sql_connect import DBcon
 
 
 def senryu_detect(sentence, author, guild_id):

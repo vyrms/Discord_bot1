@@ -1,3 +1,6 @@
+# command for .dice
+
+
 import random
 
 

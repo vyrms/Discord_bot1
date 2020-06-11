@@ -43,5 +43,13 @@ class DBcon:
                  "author varchar(255)" \
                  ")"
         self.cur.execute(senryu)
-        print("table good")
+        print("senryu table good")
 
+        vocab = "create table if not exists vocab (" \
+                "idx int auto_increment primary key," \
+                "trig varchar(255)," \
+                "resp varchar(255)" \
+                ")"
+        print(vocab)
+        self.cur.execute(vocab)
+        print("vocab table good")
