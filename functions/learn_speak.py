@@ -4,7 +4,7 @@
 import re
 import random
 
-from sql_connect import DBcon
+from functions.sql_connect import DBcon
 
 
 # .teach

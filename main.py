@@ -1,18 +1,13 @@
-import os
-
 import discord
-from discord.ext import commands
-from dotenv import load_dotenv
-import mysql.connector
-from mysql.connector import errorcode
 
 # import my own functions from other .py files
-from cointoss import cointoss
-from senryu import *
-from dice import dice
-from sql_connect import DBcon
-from help import help_message
-from learn_speak import learn, speak, forget, see_vocab
+from functions.cointoss import cointoss
+from functions.APIs.senryu import *
+from functions.dice import dice
+from functions.sql_connect import DBcon
+from functions.help import help_message
+from functions.learn_speak import learn, speak, forget, see_vocab
+from functions.uranai import unsei
 
 
 # make a .env file with the tokens and IDs needed
@@ -98,15 +93,22 @@ async def on_message(message):
         await message.channel.send(see_vocab(message.guild.id))
         return
 
+    # respond to 今日の運勢
+    elif "今日の運勢" in message.content:
+        await message.channel.send(unsei())
+        return
+
     # respond to certain words that are taught
     result = speak(message.content, message.guild.id)
     if result is not None:
         await message.channel.send(result)
+        return
 
     # test if it's a senryu
     result = senryu_detect(message.content, message.author, message.guild.id)
     if result is not None:
         await message.channel.send(result)
+        return
 
     # read a senryu
     triggers = ["詠め", "ハイク", "俳句", "川柳"]
@@ -114,7 +116,7 @@ async def on_message(message):
         if trigger in message.content:
             senryu = senryu_say(message.guild.id)
             await message.channel.send(senryu)
-            break
+            return
 
 
 # リアクション追加時に実行されるイベントハンドラ
