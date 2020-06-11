@@ -98,6 +98,25 @@ def senryu_save(senryu, author, guild_id=0):
     print(guild_id)
     dbcon = DBcon(guild_id)
 
+    # see if the senryu is a duplicate
+    sql = f"select (ku, author) from senryu"
+    dbcon.cur.execute(sql)
+    data = dbcon.cur.fetchall()
+    for tup in data:
+        # if the ku is a dupe
+        if senryu == tup[0]:
+            # if the ku was already read by the same author, don't do anything
+            if author in tup[1]:
+                return
+
+            # update the database with new author added
+            authors_now = tup[1] + ", " + author
+            sql = f"update senryu set author = \'{authors_now}\' where senryu = \'{senryu}\'"
+            dbcon.cur.execute(sql)
+            dbcon.cnx.commit()
+
+            return
+
     # insert senryu
     sql = f"insert into senryu (ku, author) values (\'{senryu}\', \'{author}\')"
     dbcon.cur.execute(sql)
