@@ -9,7 +9,7 @@ from sql_connect import DBcon
 
 
 # .teach
-def learn(command="", guild_id=637861762120548373):
+def learn(command="", guild_id=0):
     # try to connect to the database
     dbcon = DBcon(guild_id)
 
@@ -61,7 +61,7 @@ def learn(command="", guild_id=637861762120548373):
 
 
 # finds trigger words
-def speak(message="", guild_id=637861762120548373):
+def speak(message="", guild_id=0):
     # try to connect to the database
     dbcon = DBcon(guild_id)
 
@@ -90,7 +90,7 @@ def speak(message="", guild_id=637861762120548373):
 
 
 # .forget 言葉
-def forget(command="", guild_id=637861762120548373):
+def forget(command="", guild_id=0):
     # try to connect to the database
     dbcon = DBcon(guild_id)
 
