@@ -10,7 +10,7 @@ from mysql.connector import errorcode
 from sql_connect import DBcon
 
 
-def senryu_detect(sentence, author, guild_id):
+def senryu_detect(sentence, author, guild_id=0):
     sentence = sentence.replace("\n", "").replace(" ", "").replace("　", "")
 
     # get the app id for goolab from .env
@@ -93,7 +93,7 @@ def senryu_detect(sentence, author, guild_id):
     return None
 
 
-def senryu_save(senryu, author, guild_id):
+def senryu_save(senryu, author, guild_id=0):
     # try to connect to the database
     print(guild_id)
     dbcon = DBcon(guild_id)
@@ -104,7 +104,7 @@ def senryu_save(senryu, author, guild_id):
     dbcon.cnx.commit()
 
 
-def senryu_say(guild_id):
+def senryu_say(guild_id=0):
     # connect to database
     dbcon = DBcon(guild_id)
 
