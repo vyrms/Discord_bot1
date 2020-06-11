@@ -3,7 +3,6 @@
 
 import re
 import random
-from mysql.connector import errorcode
 
 from sql_connect import DBcon
 
@@ -102,7 +101,6 @@ def forget(command="", guild_id=0):
     dbcon.cur.execute(sql)
     triggers = dbcon.cur.fetchall()
     triggers = [tup[0] for tup in triggers]
-    print(triggers)
     if word not in triggers:
         return f"{word}？知らない子ですね…"
 
@@ -113,3 +111,20 @@ def forget(command="", guild_id=0):
 
     return f"321ポカン！\n言葉：{word}を忘れたよ！"
 
+
+# .vocab
+def see_vocab(guild_id=0):
+    # try to connect to the database
+    dbcon = DBcon(guild_id)
+
+    # get index, trigger, and response from database
+    sql = "select * from vocab"
+    dbcon.cur.execute(sql)
+    data = dbcon.cur.fetchall()
+    print(data)
+
+    if len(data) == 0:
+        return "うへぇ！なんも覚えてねぇや！"
+
+    output = "\n".join(list("\t".join(map(str, tup)) for tup in data))
+    return output

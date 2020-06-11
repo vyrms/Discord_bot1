@@ -12,7 +12,7 @@ from senryu import *
 from dice import dice
 from sql_connect import DBcon
 from help import help_message
-from learn_speak import learn, speak, forget
+from learn_speak import learn, speak, forget, see_vocab
 
 
 # make a .env file with the tokens and IDs needed
@@ -91,6 +91,11 @@ async def on_message(message):
     # if they want bot to forget a word
     elif message.content.startswith(".forget"):
         await message.channel.send(forget(message.content, message.guild.id))
+        return
+
+    # if they want to see the bot vocab
+    elif message.content.startswith(".vocab"):
+        await message.channel.send(see_vocab(message.guild.id))
         return
 
     # respond to certain words that are taught

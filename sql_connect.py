@@ -50,6 +50,5 @@ class DBcon:
                 "trig varchar(255)," \
                 "resp varchar(255)" \
                 ")"
-        print(vocab)
         self.cur.execute(vocab)
         print("vocab table good")
