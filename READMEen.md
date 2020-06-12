@@ -33,6 +33,8 @@ These are what the bot brings to the discord server
  
  - when bot sees a trigger word, bot will respond according to what bot was taught
  
+ - .choose choice1;choice2 - bot will choose one for you
+ 
  - 今日の運勢 (today's fortune) - tells how your fortune looks (in Japanese), and a lucky item
 
  - when bot finds a Haiku/Senryu, bot will repeat it and remember it
