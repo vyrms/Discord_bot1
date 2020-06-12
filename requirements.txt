@@ -1,8 +1,5 @@
 discord.py
 python-dotenv
-pykakasi
 requests
-beautifulsoup4
 mysql-connector-python
-selenium
 psycopg2
