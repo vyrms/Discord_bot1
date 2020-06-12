@@ -10,6 +10,7 @@ from functions.help import help_message
 from functions.learn_speak import learn, speak, forget, see_vocab
 from functions.uranai import unsei
 from functions.APIs.wiki import wiki_suggest, wiki_search
+from functions.choose import choose
 
 
 # make a .env file with the tokens and IDs needed
@@ -111,6 +112,11 @@ async def on_message(message):
         # respond to 今日の運勢
         elif "今日の運勢" in message.content:
             await message.channel.send(unsei())
+            return
+
+        # .choose function
+        elif message.content.startswith(".choose"):
+            await message.channel.send(choose(message.content))
             return
 
         # respond to certain words that are taught
