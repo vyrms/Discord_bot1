@@ -3,6 +3,8 @@ import os
 from dotenv import load_dotenv
 import mysql.connector
 from mysql.connector import errorcode
+import psycopg2.errorcodes
+import psycopg2
 
 
 class DBcon:
@@ -11,30 +13,30 @@ class DBcon:
         load_dotenv()
 
         # connect to mysql
-        username = os.getenv('USER')
-        password = os.getenv('PASSWORD')
-        hostname = os.getenv('HOST')
+        self.username = os.getenv('USER')
+        self.password = os.getenv('PASSWORD')
+        self.hostname = os.getenv('HOST')
 
         # try to connect to the database
-        try:
-            db = "db" + str(guild_id)
-            self.cnx = mysql.connector.connect(user=username, password=password,
-                                               host=hostname,
-                                               database=db)
-            print("db connected")
-            self.cur = self.cnx.cursor()
+        self.db = "db" + str(guild_id)
+        self.cnx = None
+        self.cur = None
 
-        except mysql.connector.Error as err:
-            # if the database doesn't exist
-            if err.errno == errorcode.ER_BAD_DB_ERROR:
-                print("db not found. making db")
-                self.cnx = mysql.connector.connect(user=username, password=password,
-                                                   host=hostname)
-                self.cur = self.cnx.cursor()
-                self.cur.execute(f"CREATE DATABASE {db}")
-                self.cur.execute(f"use {db}")
-            else:
-                print(err)
+    def db_connect(self):
+        self.cnx = mysql.connector.connect(user=self.username, password=self.password,
+                                           host=self.hostname,
+                                           database=self.db)
+        print("db connected")
+        self.cur = self.cnx.cursor()
+
+    def db_maker(self):
+        print(f"making database {self.db}")
+        # make database
+        self.cnx = mysql.connector.connect(user=self.username, password=self.password,
+                                           host=self.hostname)
+        self.cur = self.cnx.cursor()
+        self.cur.execute(f"CREATE DATABASE if not exists {self.db}")
+        self.cur.execute(f"use {self.db}")
 
     def table_maker(self):
         senryu = "create table if not exists senryu (" \

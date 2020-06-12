@@ -95,6 +95,7 @@ def senryu_save(senryu, author, guild_id=0):
     # try to connect to the database
     print(guild_id)
     dbcon = DBcon(guild_id)
+    dbcon.db_connect()
 
     # see if the senryu is a duplicate
     sql = f"select ku, author from senryu"
@@ -124,6 +125,7 @@ def senryu_save(senryu, author, guild_id=0):
 def senryu_say(guild_id=0):
     # connect to database
     dbcon = DBcon(guild_id)
+    dbcon.db_connect()
 
     # take a random senryu from the senryu database
     sql = "select * from senryu"

@@ -11,6 +11,7 @@ from functions.sql_connect import DBcon
 def learn(command="", guild_id=0):
     # try to connect to the database
     dbcon = DBcon(guild_id)
+    dbcon.db_connect()
 
     try:
         # tidy the command
@@ -63,6 +64,7 @@ def learn(command="", guild_id=0):
 def speak(message="", guild_id=0):
     # try to connect to the database
     dbcon = DBcon(guild_id)
+    dbcon.db_connect()
 
     # look in database for the trig word
     sql = f"select * from vocab"
@@ -92,6 +94,7 @@ def speak(message="", guild_id=0):
 def forget(command="", guild_id=0):
     # try to connect to the database
     dbcon = DBcon(guild_id)
+    dbcon.db_connect()
 
     # tidy the command
     word = command.strip(".forget").strip(" ").strip("　")
@@ -116,6 +119,7 @@ def forget(command="", guild_id=0):
 def see_vocab(guild_id=0):
     # try to connect to the database
     dbcon = DBcon(guild_id)
+    dbcon.db_connect()
 
     # get index, trigger, and response from database
     sql = "select * from vocab"

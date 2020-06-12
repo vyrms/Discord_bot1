@@ -27,6 +27,7 @@ async def on_ready():
     # creates mysql database and tables for all servers (if necessary)
     for guild in guilds:
         dbcon = DBcon(guild.id)
+        dbcon.db_maker()
         dbcon.table_maker()
 
     # 起動したらターミナルにログイン通知が表示される
