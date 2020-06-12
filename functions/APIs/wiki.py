@@ -56,6 +56,7 @@ def wiki_search(command=""):
         snippet = query['search'][0]['snippet']
         cleanr = re.compile('<.*?>')
         cleantext = re.sub(cleanr, '', snippet)
+        cleantext = cleantext.replace("&quot;", "\"")
 
         output = f"{title}とは！！\n" \
                  f"{cleantext}"

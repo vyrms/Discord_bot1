@@ -15,9 +15,9 @@ def learn(command="", guild_id=0):
 
     try:
         # tidy the command
-        command = command.strip(".teach").strip(" ").strip("　").strip("\"")
-        command = re.split("\"", command, 1)
-        command[0] = command[0].strip(" ").strip("　")
+        command = command.strip(".teach ")
+        command = re.split(" ", command, 1)
+        command = [word for word in command if not ""]
 
         # see if the trigger is a duplicate
         sql = f"select * from vocab where trig = \'{command[0]}\'"
@@ -57,7 +57,7 @@ def learn(command="", guild_id=0):
     except IndexError:
         return "入力ミスした？\n" \
                "↓こんな感じで入力してね！\n" \
-               ".teach えらい \"えへへへ;ありがと！\""
+               ".teach えらい えへへへ;ありがと！"
 
 
 # finds trigger words

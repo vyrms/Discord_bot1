@@ -26,15 +26,15 @@ class DBcon:
         self.cnx = mysql.connector.connect(user=self.username, password=self.password,
                                            host=self.hostname,
                                            database=self.db)
-        print("db connected")
         self.cur = self.cnx.cursor()
 
     def db_maker(self):
-        print(f"making database {self.db}")
         # make database
         self.cnx = mysql.connector.connect(user=self.username, password=self.password,
                                            host=self.hostname)
         self.cur = self.cnx.cursor()
+
+        print(f"making database {self.db}")
         self.cur.execute(f"CREATE DATABASE if not exists {self.db}")
         self.cur.execute(f"use {self.db}")
 
