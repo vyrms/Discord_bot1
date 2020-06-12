@@ -42,6 +42,7 @@ def learn(command="", guild_id=0):
             # response to discord
             output = f"その言葉の返事はもうあったけど、がんばって追加で覚えたよ！\n" \
                      f"言葉：「{command[0]}」返事：「{nondupes}」\nを覚えました！"
+            dbcon.close()
             return output
 
         # save to database
@@ -51,10 +52,12 @@ def learn(command="", guild_id=0):
 
         # response
         output = f"言葉：「{command[0]}」返事：「{command[1]}」\nを覚えました！"
+        dbcon.close()
         return output
 
     # if the command input was in some weird form
     except IndexError:
+        dbcon.close()
         return "入力ミスした？\n" \
                "↓こんな感じで入力してね！\n" \
                ".teach えらい えへへへ;ありがと！"
@@ -79,6 +82,7 @@ def speak(message="", guild_id=0):
 
     # if no words match
     if len(keep) == 0:
+        dbcon.close()
         return
 
     # find which trigger is longest
@@ -87,6 +91,7 @@ def speak(message="", guild_id=0):
     # pick randomly if there are choices
     resp = chosen[2].split(";")
     idx = random.randint(0, len(resp) - 1)
+    dbcon.close()
     return resp[idx]
 
 
@@ -105,6 +110,7 @@ def forget(command="", guild_id=0):
     triggers = dbcon.cur.fetchall()
     triggers = [tup[0] for tup in triggers]
     if word not in triggers:
+        dbcon.close()
         return f"{word}？知らない子ですね…"
 
     # delete from database
@@ -112,6 +118,7 @@ def forget(command="", guild_id=0):
     dbcon.cur.execute(sql)
     dbcon.cnx.commit()
 
+    dbcon.close()
     return f"321ポカン！\n言葉：{word}を忘れたよ！"
 
 
@@ -128,7 +135,9 @@ def see_vocab(guild_id=0):
     print(data)
 
     if len(data) == 0:
+        dbcon.close()
         return "うへぇ！なんも覚えてねぇや！"
 
     output = "\n".join(list("\t".join(map(str, tup)) for tup in data))
+    dbcon.close()
     return output

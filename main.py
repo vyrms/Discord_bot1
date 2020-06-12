@@ -30,6 +30,7 @@ async def on_ready():
         dbcon = DBcon(guild.id)
         dbcon.db_maker()
         dbcon.table_maker()
+        dbcon.close()
 
     # 起動したらターミナルにログイン通知が表示される
     channel = client.get_channel(712433049845104690)

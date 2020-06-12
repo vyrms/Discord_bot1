@@ -106,6 +106,7 @@ def senryu_save(senryu, author, guild_id=0):
         if senryu == tup[1]:
             # if the ku was already read by the same author, don't do anything
             if author in tup[2]:
+                dbcon.close()
                 return
 
             # update the database with new author added
@@ -114,12 +115,14 @@ def senryu_save(senryu, author, guild_id=0):
             dbcon.cur.execute(sql)
             dbcon.cnx.commit()
 
+            dbcon.close()
             return
 
     # insert senryu
     sql = f"insert into senryu (ku, author) values (\'{senryu}\', \'{author}\')"
     dbcon.cur.execute(sql)
     dbcon.cnx.commit()
+    dbcon.close()
 
 
 def senryu_say(guild_id=0):
@@ -141,4 +144,5 @@ def senryu_say(guild_id=0):
     author = senryu[2].split("#")[0]
     result = senryu[1] + "\n\n詠み手： " + author
 
+    dbcon.close()
     return result

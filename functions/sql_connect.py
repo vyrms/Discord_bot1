@@ -54,3 +54,7 @@ class DBcon:
                 ")"
         self.cur.execute(vocab)
         print("vocab table good")
+
+    def close(self):
+        self.cur.close()
+        self.cnx.close()
