@@ -1,9 +1,6 @@
 # command for .help
 
 
-import codecs
-
-
 def help_message():
     helpmessage = ".help でこれが見れるよ！\n" \
                   "\n" \
