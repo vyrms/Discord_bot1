@@ -9,10 +9,8 @@ def choose(command=""):
     # tidy the command
     command = command.strip(".choose ")
     choices = command.split(";")
-    print(choices)
 
     if choices[0] == "":
-        print("error")
         return "入力ミスした？こんな感じで入力してね！\n" \
                ".choose 選択肢1;選択肢2"
 
