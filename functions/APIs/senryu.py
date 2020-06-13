@@ -81,7 +81,6 @@ def senryu_detect(sentence, author, guild_id=0):
                 if i + 1 < len(separated):
                     if separated[i + 1][1] in ignore:
                         break
-                print("senryu detected!")
 
                 # save the senryu into db
                 senryu_save(senryu, author, guild_id)
@@ -93,7 +92,6 @@ def senryu_detect(sentence, author, guild_id=0):
 
 def senryu_save(senryu, author, guild_id=0):
     # try to connect to the database
-    print(guild_id)
     dbcon = DBcon(guild_id)
     dbcon.db_connect()
 
