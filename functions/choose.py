@@ -7,7 +7,7 @@ import random
 # syntax = .choose choice1;choice2
 def choose(command=""):
     # tidy the command
-    command = command.strip(".choose ")
+    command = command[8:]
     choices = command.split(";")
 
     if choices[0] == "":

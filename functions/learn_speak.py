@@ -15,7 +15,7 @@ def learn(command="", guild_id=0):
 
     try:
         # tidy the command
-        command = command.strip(".teach ")
+        command = command[7:]
         command = re.split(" ", command, 1)
         command = [word for word in command if not ""]
 
@@ -102,7 +102,7 @@ def forget(command="", guild_id=0):
     dbcon.db_connect()
 
     # tidy the command
-    word = command.strip(".forget").strip(" ").strip("　")
+    word = command[8:]
 
     # see if the word is not in database
     sql = f"select trig from vocab"
@@ -132,7 +132,6 @@ def see_vocab(guild_id=0):
     sql = "select * from vocab"
     dbcon.cur.execute(sql)
     data = dbcon.cur.fetchall()
-    print(data)
 
     if len(data) == 0:
         dbcon.close()

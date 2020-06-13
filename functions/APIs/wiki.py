@@ -9,7 +9,7 @@ import re
 def wiki_suggest(command=""):
     try:
         # tidy the command
-        command = command.strip(".wikisuggest ").split(" ", maxsplit=1)
+        command = command[13:].split(" ", maxsplit=1)
         # set word to search for
         searchpage = command[1]
         # set hwo many suggestions to get
@@ -41,9 +41,8 @@ def wiki_suggest(command=""):
 def wiki_search(command=""):
     try:
         # tidy the command
-        command = command.strip(".wikisearch ").split(" ", maxsplit=1)
-        # set word to search for
-        searchpage = command[0]
+        searchpage = command[12:]
+
         # only get 1 result
         srlimit = "1"
 
