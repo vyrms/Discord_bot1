@@ -25,6 +25,10 @@ These are what the bot brings to the discord server
 
  - .wikisuggest n word - suggests n words that are related to the word given
 
+ - .integrate expression - takes the integral of the expression
+
+ - .derive expression - takes the derivative of the expression
+
  - .teach trigger response1;response2 - bot learns a word/responses pair
  
  - .forget trigger - bot forgets the word/responses pair
