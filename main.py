@@ -11,6 +11,7 @@ from functions.learn_speak import learn, speak, forget, see_vocab
 from functions.uranai import unsei
 from functions.APIs.wiki import wiki_suggest, wiki_search
 from functions.choose import choose
+from functions.calculator import integral, derivative
 
 
 # make a .env file with the tokens and IDs needed
@@ -92,6 +93,16 @@ async def on_message(message):
         # search wikipedia for top hit
         elif message.content.startswith(".wikisearch"):
             await message.channel.send(wiki_search(message.content))
+            return
+
+        # integrate
+        elif message.content.startswith(".integrate"):
+            await message.channel.send(integral(message.content))
+            return
+
+        # derive
+        elif message.content.startswith(".derive"):
+            await message.channel.send(derivative(message.content))
             return
 
         # if they want to teach
