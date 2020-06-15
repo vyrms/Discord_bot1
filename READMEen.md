@@ -29,6 +29,8 @@ These are what the bot brings to the discord server
 
  - .derive expression - takes the derivative of the expression
 
+ - .calc expression - calculates the numerical expression
+
  - .teach trigger response1;response2 - bot learns a word/responses pair
  
  - .forget trigger - bot forgets the word/responses pair

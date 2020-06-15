@@ -11,7 +11,7 @@ from functions.learn_speak import learn, speak, forget, see_vocab
 from functions.uranai import unsei
 from functions.APIs.wiki import wiki_suggest, wiki_search
 from functions.choose import choose
-from functions.calculator import integral, derivative
+from functions.calculator import integral, derivative, calc
 
 
 # make a .env file with the tokens and IDs needed
@@ -103,6 +103,11 @@ async def on_message(message):
         # derive
         elif message.content.startswith(".derive"):
             await message.channel.send(derivative(message.content))
+            return
+
+        # calculate
+        elif message.content.startswith(".calc"):
+            await message.channel.send(calc(message.content))
             return
 
         # if they want to teach

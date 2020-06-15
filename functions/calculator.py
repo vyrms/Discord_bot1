@@ -41,3 +41,18 @@ def derivative(command=""):
     except sympy.SympifyError as err:
         print(err)
         return err
+
+
+# command syntax = .calc expression
+def calc(command=""):
+    try:
+        # tidy command
+        expression = command[5:]
+
+        # calculate
+        output = sympy.N(expression)
+        return output
+
+    except sympy.SympifyError as err:
+        print(err)
+        return err
