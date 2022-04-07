@@ -59,7 +59,7 @@ Tから始まるスカイブロックの一種だとだけ…
 ## 使用させていただいてるデータベース
 MySQL
 
-## 使用させていただいてるAPIたち
+## 使用させていただいてるAPI
 gooラボAPI
 
 Wikipedia API
@@ -67,7 +67,7 @@ Wikipedia API
 ## 使用させていただいたIDE
 PyCharm
 
-## 使用させていただいたPython Libiraryたち
+## 使用させていただいたPython Libirary
 discord.py
 
 python-dotenv
